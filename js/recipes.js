@@ -431,7 +431,6 @@ window.RECIPES = [
   {
     slug: "chocolate-mug-cake",
     title: "Chocolate Mug Cake",
-    image: "images/chocolate-mug-cake.jpg",
     section: "desserts",
     colour: "#5A3A31",
     intro:
@@ -458,7 +457,6 @@ window.RECIPES = [
   {
     slug: "raspberry-bakewell-cake",
     title: "Raspberry Bakewell Cake",
-    image: "images/raspberry-bakewell-cake.jpg",
     section: "desserts",
     colour: "#C8677A",
     serves: "Six to seven people",
