@@ -6,7 +6,7 @@
 window.RECIPES = [
   { slug: "zhahlas-chai", title: "Zhahla\u2019s Chai", section: "chai", colour: "#A0522D" },
 
-  { slug: "one-pot-chicken-pie", title: "One Pot Chicken Pie", section: "savoury", colour: "#B7853F" },
+  { slug: "one-pot-chicken-pie", image: "images/one-pot-chicken-pie.jpg", title: "One Pot Chicken Pie", section: "savoury", colour: "#B7853F" },
   { slug: "sweet-potato-fries", title: "Sweet Potato Fries", section: "savoury", colour: "#C8733A" },
   { slug: "french-chicken", title: "French Chicken", section: "savoury", colour: "#9A7B3F" },
   { slug: "one-pot-beef-pasta", title: "One Pot Beef Pasta", section: "savoury", colour: "#A4443A" },
@@ -14,8 +14,8 @@ window.RECIPES = [
   { slug: "kadu-borani", title: "Kadu Borani", section: "savoury", colour: "#C06A2E" },
   { slug: "salad-shirazi", title: "Salad Shirazi", section: "savoury", colour: "#56705C" },
   { slug: "palak-paneer", title: "Palak Paneer", section: "savoury", colour: "#4E7045" },
-  { slug: "baba-ganoush", title: "Baba Ganoush", section: "savoury", colour: "#7A6A5C" },
-  { slug: "beetroot-and-walnut-dip", title: "Beetroot and Walnut Dip", section: "savoury", colour: "#8C2446" },
+  { slug: "baba-ganoush", image: "images/baba-ganoush.jpg", title: "Baba Ganoush", section: "savoury", colour: "#7A6A5C" },
+  { slug: "beetroot-and-walnut-dip", image: "images/beetroot-and-walnut-dip.jpg", title: "Beetroot and Walnut Dip", section: "savoury", colour: "#8C2446" },
 
   {
     slug: "beetroot-brownies",
