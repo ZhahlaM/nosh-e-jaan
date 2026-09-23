@@ -1,11 +1,27 @@
-// All recipes live here. To add one, copy an entry and change the fields.
+// All recipes live here, in the same order as the book's recipe list.
+// A recipe with only slug/title/section/colour shows as "coming soon" in the index.
+// To publish it, fill in image, intro, serves, oven, time, ingredients and method
+// (copy a finished entry such as Beetroot Brownies as a template).
 // `image` is optional: if the file is missing, an illustrated placeholder is shown.
 window.RECIPES = [
+  { slug: "zhahlas-chai", title: "Zhahla\u2019s Chai", section: "chai", colour: "#A0522D" },
+
+  { slug: "one-pot-chicken-pie", title: "One Pot Chicken Pie", section: "savoury", colour: "#B7853F" },
+  { slug: "sweet-potato-fries", title: "Sweet Potato Fries", section: "savoury", colour: "#C8733A" },
+  { slug: "french-chicken", title: "French Chicken", section: "savoury", colour: "#9A7B3F" },
+  { slug: "one-pot-beef-pasta", title: "One Pot Beef Pasta", section: "savoury", colour: "#A4443A" },
+  { slug: "moroccan-pastries", title: "Moroccan Pastries", section: "savoury", colour: "#B8863B" },
+  { slug: "kadu-borani", title: "Kadu Borani", section: "savoury", colour: "#C06A2E" },
+  { slug: "salad-shirazi", title: "Salad Shirazi", section: "savoury", colour: "#56705C" },
+  { slug: "palak-paneer", title: "Palak Paneer", section: "savoury", colour: "#4E7045" },
+  { slug: "baba-ganoush", title: "Baba Ganoush", section: "savoury", colour: "#7A6A5C" },
+  { slug: "beetroot-and-walnut-dip", title: "Beetroot and Walnut Dip", section: "savoury", colour: "#8C2446" },
+
   {
     slug: "beetroot-brownies",
     title: "Beetroot Brownies",
     image: "images/beetroot-brownies.jpg",
-    tags: ["bakes", "hidden-veg"],
+    section: "sweet",
     colour: "#8C2446",
     intro:
       "Okay you might be thinking, why would you put beetroot in a brownie? Now I think these brownies are amazing. They are a great way of adding some vegetables into your diet and the brownies are fudgy and cakey in texture. Absolutely divine.",
@@ -37,7 +53,7 @@ window.RECIPES = [
     slug: "chocolate-mug-cake",
     title: "Chocolate Mug Cake",
     image: "images/chocolate-mug-cake.jpg",
-    tags: ["quick"],
+    section: "sweet",
     colour: "#5A3A31",
     intro:
       "After busy days at uni, I would make a mug cake for myself in the evening and cosy up and eat this with some ice cream. With a show on in the background, this was a perfect little self care moment for me.",
@@ -64,7 +80,7 @@ window.RECIPES = [
     slug: "raspberry-bakewell-cake",
     title: "Raspberry Bakewell Cake",
     image: "images/raspberry-bakewell-cake.jpg",
-    tags: ["bakes"],
+    section: "sweet",
     colour: "#C8677A",
     intro: "",
     serves: "Six to seven people",
@@ -91,9 +107,8 @@ window.RECIPES = [
   },
 ];
 
-window.CATEGORIES = [
-  { id: "all", label: "Everything" },
-  { id: "bakes", label: "Cakes & bakes" },
-  { id: "quick", label: "Quick treats" },
-  { id: "hidden-veg", label: "Hidden veg" },
+window.SECTIONS = [
+  { id: "chai", label: "Chai", title: "To start, a cup of chai" },
+  { id: "savoury", label: "Savoury", title: "Savoury" },
+  { id: "sweet", label: "Sweet", title: "Something sweet" },
 ];

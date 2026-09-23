@@ -1,6 +1,6 @@
 (function () {
   const recipes = window.RECIPES;
-  const categories = window.CATEGORIES;
+  const sections = window.SECTIONS;
   const home = document.getElementById("home");
   const view = document.getElementById("recipe-view");
   let activeFilter = "all";
@@ -29,14 +29,18 @@
     root.querySelectorAll("img[data-src]").forEach((img) => {
       const fallback = placeholder(img.dataset.label || "", img.dataset.colour || "#C8677A");
       img.onerror = () => { img.onerror = null; img.src = fallback; };
-      img.src = img.dataset.src;
+      img.src = img.dataset.src || fallback;
       img.removeAttribute("data-src");
     });
   }
 
+  const isReady = (r) => Array.isArray(r.method) && r.method.length > 0;
+  const readyRecipes = recipes.filter(isReady);
+  const filters = [{ id: "all", label: "Everything" }].concat(sections);
+
   function renderFilters() {
     const el = document.getElementById("filters");
-    el.innerHTML = categories
+    el.innerHTML = filters
       .map((c) => `<button type="button" class="chip" data-filter="${c.id}" aria-pressed="${c.id === activeFilter}">${esc(c.label)}</button>`)
       .join("");
     el.onclick = (e) => {
@@ -48,32 +52,47 @@
     };
   }
 
-  function renderCards() {
-    const grid = document.getElementById("card-grid");
-    const list = recipes.filter((r) => activeFilter === "all" || r.tags.includes(activeFilter));
-    const cards = list.map((r) => {
-      const blurb = r.intro ? r.intro.split(/(?<=\.)\s/)[0] : `Serves ${r.serves.toLowerCase()}.`;
-      return `<a class="card" href="#${r.slug}" style="--c:${r.colour}">
-        <span class="card-photo"><img data-src="${esc(r.image)}" data-label="${esc(r.title)}" data-colour="${r.colour}" alt=""></span>
+  function card(r) {
+    const photo = `<span class="card-photo"><img data-src="${esc(r.image || "")}" data-label="${esc(r.title)}" data-colour="${r.colour}" alt=""></span>`;
+    if (!isReady(r)) {
+      return `<div class="card card-pending" style="--c:${r.colour}">
+        ${photo}
+        <span class="card-body">
+          <span class="card-meta">Recipe coming soon</span>
+          <span class="card-title">${esc(r.title)}</span>
+        </span>
+      </div>`;
+    }
+    const blurb = r.intro ? r.intro.split(/(?<=[.?!])\s/)[0] : `Serves ${r.serves.toLowerCase()}.`;
+    return `<a class="card" href="#${r.slug}" style="--c:${r.colour}">
+        ${photo}
         <span class="card-body">
           <span class="card-meta">${esc(r.time)} &middot; serves ${esc(r.serves.replace(/ people$/, "").toLowerCase())}</span>
           <span class="card-title">${esc(r.title)}</span>
           <span class="card-blurb">${esc(blurb)}</span>
         </span>
       </a>`;
-    });
-    cards.push(`<div class="card card-soon" aria-label="More recipes coming">
-        <span class="soon-mark" aria-hidden="true">&#10043;</span>
-        <span class="card-title">More from the kitchen</span>
-        <span class="card-blurb">New recipes are being tested. Check back soon.</span>
-      </div>`);
-    grid.innerHTML = cards.join("");
-    hydrateImages(grid);
+  }
+
+  function renderCards() {
+    const root = document.getElementById("card-grid");
+    const shown = sections.filter((sec) => activeFilter === "all" || sec.id === activeFilter);
+    root.innerHTML = shown
+      .map((sec) => {
+        const list = recipes.filter((r) => r.section === sec.id);
+        const ready = list.filter(isReady).length;
+        return `<div class="course">
+          <h3 class="course-title">${esc(sec.title)} <span class="course-count">${ready} of ${list.length} ready</span></h3>
+          <div class="card-grid">${list.map(card).join("")}</div>
+        </div>`;
+      })
+      .join("");
+    hydrateImages(root);
   }
 
   function renderRecipe(r) {
-    const idx = recipes.indexOf(r);
-    const next = recipes[(idx + 1) % recipes.length];
+    const idx = readyRecipes.indexOf(r);
+    const next = readyRecipes[(idx + 1) % readyRecipes.length];
     view.style.setProperty("--c", r.colour);
     view.innerHTML = `
       <a class="back" href="#recipes">&larr; All recipes</a>
@@ -95,7 +114,7 @@
           </ul>
         </div>
         <div class="page page-right">
-          <figure class="recipe-photo taped"><img data-src="${esc(r.image)}" data-label="${esc(r.title)}" data-colour="${r.colour}" alt="${esc(r.title)}"></figure>
+          <figure class="recipe-photo taped"><img data-src="${esc(r.image || "")}" data-label="${esc(r.title)}" data-colour="${r.colour}" alt="${esc(r.title)}"></figure>
           <h2 class="sub">Method</h2>
           <ol class="method">${r.method.map((s) => `<li>${esc(s)}</li>`).join("")}</ol>
           <p class="sign-off">Noosh e jan!</p>
@@ -107,7 +126,7 @@
 
   function route() {
     const slug = location.hash.slice(1);
-    const r = recipes.find((x) => x.slug === slug);
+    const r = readyRecipes.find((x) => x.slug === slug);
     if (r) {
       renderRecipe(r);
       home.hidden = true;

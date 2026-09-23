@@ -182,7 +182,7 @@ p { margin: 0; }
   background: var(--paper-deep);
   padding: clamp(48px, 7vw, 88px) var(--gutter);
 }
-.section-head, .filters, .card-grid { max-width: var(--max); margin-inline: auto; }
+.section-head, .filters, .courses { max-width: var(--max); margin-inline: auto; }
 .section-head h2 { font-size: var(--step-3); margin-top: 6px; font-variation-settings: "SOFT" 100, "WONK" 1; }
 .filters { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
 .chip {
@@ -202,7 +202,25 @@ p { margin: 0; }
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr));
   gap: clamp(20px, 3vw, 32px);
-  margin-top: 36px;
+}
+.courses { display: flex; flex-direction: column; gap: clamp(40px, 6vw, 64px); margin-top: 40px; }
+.course { display: flex; flex-direction: column; gap: 20px; }
+.course-title {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px 14px;
+  font-size: var(--step-2);
+  font-style: italic;
+  padding-bottom: 10px;
+  border-bottom: 1px dashed color-mix(in srgb, var(--rose) 45%, transparent);
+}
+.course-count {
+  font-family: var(--body);
+  font-style: normal;
+  font-size: var(--step--1);
+  color: var(--ink-soft);
+  font-variant-numeric: tabular-nums;
 }
 .card {
   display: flex;
@@ -227,17 +245,10 @@ p { margin: 0; }
 .card-meta { font-size: var(--step--1); color: var(--c, var(--rose)); font-variant-numeric: tabular-nums; }
 .card-title { font-family: var(--display); font-size: var(--step-1); font-weight: 500; line-height: 1.15; }
 .card-blurb { font-size: 1rem; color: var(--ink-soft); line-height: 1.5; }
-.card-soon {
-  justify-content: center;
-  align-items: flex-start;
-  gap: 8px;
-  padding: 28px 22px;
-  border: 2px dashed var(--line);
-  background: transparent;
-  box-shadow: none;
-}
-.card-soon:hover { transform: rotate(-.4deg); box-shadow: none; }
-.soon-mark { font-size: 2rem; color: var(--sage); line-height: 1; }
+.card-pending { box-shadow: 0 1px 0 var(--line); }
+.card-pending:hover { transform: rotate(-.4deg); box-shadow: 0 1px 0 var(--line); }
+.card-pending .card-photo img { opacity: .75; }
+.card-pending .card-meta { color: var(--ink-soft); font-style: italic; }
 
 /* ---------- About ---------- */
 .about {
