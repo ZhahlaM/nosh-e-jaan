@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Noosh e jan</title>
+<meta name="description" content="Noosh e jan: recipes to nourish your soul, by Zhahla Mohamed.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..800,0..100,0..1;1,9..144,300..800,0..100,0..1&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..600&family=Noto+Naskh+Arabic:wght@500&display=swap">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<header class="topbar">
+  <a class="brand" href="#top">Noosh e jan</a>
+  <nav aria-label="Main">
+    <a href="#recipes">Recipes</a>
+    <a href="#about">About</a>
+    <a href="#book" class="nav-cta">The book</a>
+  </nav>
+</header>
+
+<main id="home">
+  <section class="hero" id="top">
+    <div class="hero-text">
+      <p class="persian" lang="fa" dir="rtl">نوش جان</p>
+      <h1>Noosh <em>e</em> jan</h1>
+      <p class="tagline">Recipes to nourish your soul</p>
+      <p class="byline">by Zhahla Mohamed</p>
+      <p class="gloss"><span class="gloss-word">noosh-e jan</span> <span class="gloss-pos">Persian, phrase.</span> Said to someone as they sit down to eat: <em>may it nourish your soul.</em></p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#recipes">Browse the recipes</a>
+        <a class="btn btn-ghost" href="#book">About the book</a>
+      </div>
+    </div>
+    <figure class="hero-photo taped">
+      <img data-src="images/cover.jpg" data-label="Beetroot dip &amp; warm bread" data-colour="#C8677A" alt="Beetroot dip scattered with walnuts and sumac, beside a round of bread">
+    </figure>
+  </section>
+
+  <div class="gingham" aria-hidden="true"></div>
+
+  <section class="recipes" id="recipes">
+    <div class="section-head">
+      <p class="eyebrow">The recipes</p>
+      <h2>What shall we make?</h2>
+    </div>
+    <div class="filters" role="group" aria-label="Filter recipes" id="filters"></div>
+    <div class="card-grid" id="card-grid"></div>
+  </section>
+
+  <section class="about" id="about">
+    <figure class="about-photo taped taped-left">
+      <img data-src="images/zhahla.jpg" data-label="Zhahla in the kitchen" data-colour="#93AE98" alt="Portrait of Zhahla Mohamed">
+    </figure>
+    <div class="about-text">
+      <p class="eyebrow">About Zhahla</p>
+      <h2>Hello, I'm Zhahla.</h2>
+      <p>These are the recipes I cook for the people I love, and for myself on the evenings I need looking after. Some came from family tables, some from a tiny student kitchen at uni, and all of them are meant to be made on an ordinary day.</p>
+      <p>The name comes from what we say in Persian when someone sits down to eat: <em>noosh-e jan</em>, may it nourish your soul. That's what I hope each of these dishes does for you.</p>
+      <p class="placeholder-note">Placeholder text. Send me your own words and I'll drop them in.</p>
+    </div>
+  </section>
+
+  <section class="book" id="book">
+    <div class="book-card">
+      <p class="eyebrow">The book</p>
+      <h2>Noosh e jan, in print</h2>
+      <p>A collection of comforting, everyday recipes with a story behind each one, photographed at home.</p>
+      <form id="notify-form" class="notify" novalidate>
+        <label for="notify-email">Hear when the book is ready</label>
+        <div class="notify-row">
+          <input id="notify-email" type="email" placeholder="you@example.com" autocomplete="email" required>
+          <button class="btn btn-primary" type="submit">Let me know</button>
+        </div>
+        <p class="notify-msg" id="notify-msg" role="status"></p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<article id="recipe-view" class="recipe-view" hidden></article>
+
+<footer class="footer">
+  <p><span lang="fa" dir="rtl" class="persian-small">نوش جان</span> &nbsp;Noosh e jan &middot; Zhahla Mohamed</p>
+</footer>
+
+<script src="js/recipes.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
