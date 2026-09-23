@@ -249,6 +249,31 @@ p { margin: 0; }
 .card-pending:hover { transform: rotate(-.4deg); box-shadow: 0 1px 0 var(--line); }
 .card-pending .card-meta { color: var(--ink-soft); font-style: italic; }
 
+/* ---------- Sustainability tips ---------- */
+.tips { padding: clamp(56px, 8vw, 96px) var(--gutter) 0; }
+.tips-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: clamp(24px, 5vw, 64px);
+  align-items: start;
+}
+.tips-head { display: flex; flex-direction: column; gap: 12px; }
+.tips-head h2 { font-size: var(--step-3); color: var(--sage-deep); font-variation-settings: "SOFT" 100, "WONK" 1; }
+.tips-head p:last-child { color: var(--ink-soft); max-width: 42ch; }
+.tips-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 14px; }
+.tips-list li { position: relative; padding-left: 30px; max-width: 64ch; }
+.tips-list li::before {
+  content: "";
+  position: absolute;
+  left: 2px; top: .45em;
+  width: 14px; height: 14px;
+  border-radius: 0 70% 0 70%;
+  background: var(--sage);
+  transform: rotate(-10deg);
+}
+
 /* ---------- About ---------- */
 .about {
   max-width: var(--max);
@@ -262,6 +287,26 @@ p { margin: 0; }
 .about-photo img { aspect-ratio: 4 / 5; }
 .about-text { display: flex; flex-direction: column; gap: 16px; max-width: 60ch; }
 .about-text h2 { font-size: var(--step-3); font-variation-settings: "SOFT" 100, "WONK" 1; }
+.thanks {
+  margin-top: 8px;
+  padding: 18px 20px;
+  border: 1.5px dashed var(--line);
+  border-radius: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 1rem;
+  color: var(--ink-soft);
+}
+.thanks h3 { font-size: var(--step-0); font-style: italic; color: var(--ink); }
+.note {
+  margin-top: 24px;
+  padding: 16px 20px;
+  background: color-mix(in srgb, var(--c) 9%, var(--paper));
+  border-radius: 14px 14px 14px 3px;
+}
+.note h3 { font-size: 1.05rem; font-style: italic; color: var(--c); }
+.note ul { margin: 6px 0 0; padding-left: 20px; font-size: 1rem; }
 .placeholder-note { font-size: var(--step--1); color: var(--sage-deep); font-style: italic; }
 
 /* ---------- Kitchen snapshots ---------- */
@@ -440,7 +485,7 @@ p { margin: 0; }
 
 /* ---------- Small screens ---------- */
 @media (max-width: 820px) {
-  .hero, .about, .spread { grid-template-columns: 1fr; }
+  .hero, .about, .spread, .tips-inner { grid-template-columns: 1fr; }
   .hero-photo { order: -1; max-width: 520px; }
   .about-photo { max-width: 360px; }
   .spread { background-image: none; }

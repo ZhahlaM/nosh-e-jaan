@@ -67,7 +67,7 @@
     return `<a class="card" href="#${r.slug}" style="--c:${r.colour}">
         ${photo}
         <span class="card-body">
-          <span class="card-meta">${esc(r.time)} &middot; serves ${esc(r.serves.replace(/ people$/, "").toLowerCase())}</span>
+          <span class="card-meta">${[r.time, "serves " + r.serves.replace(/ people/, "").toLowerCase()].filter(Boolean).map(esc).join(" &middot; ")}</span>
           <span class="card-title">${esc(r.title)}</span>
           <span class="card-blurb">${esc(blurb)}</span>
         </span>
@@ -101,9 +101,14 @@
           <h1 class="recipe-title">${esc(r.title)}</h1>
           ${r.intro ? `<p class="recipe-intro">${esc(r.intro)}</p>` : ""}
           <dl class="facts">
-            <div><dt>Serves</dt><dd>${esc(r.serves)}</dd></div>
-            <div><dt>${r.oven === "Microwave" ? "Cook in" : "Oven"}</dt><dd>${esc(r.oven)}</dd></div>
-            <div><dt>Time</dt><dd>${esc(r.time)}</dd></div>
+            ${[
+              ["Serves", r.serves],
+              [/^\d/.test(r.oven || "") ? "Oven" : "Cooking", r.oven],
+              ["Time", r.time],
+            ]
+              .filter(([, v]) => v)
+              .map(([k, v]) => `<div><dt>${k}</dt><dd>${esc(v)}</dd></div>`)
+              .join("")}
           </dl>
           <h2 class="sub">Ingredients</h2>
           <p class="hint">Tick things off as you gather them.</p>
@@ -112,6 +117,9 @@
               .map((ing, i) => `<li><input type="checkbox" id="ing-${r.slug}-${i}"><label for="ing-${r.slug}-${i}">${esc(ing)}</label></li>`)
               .join("")}
           </ul>
+          ${(r.notes || [])
+            .map((n) => `<aside class="note"><h3>${esc(n.title)}</h3><ul>${n.items.map((i) => `<li>${esc(i)}</li>`).join("")}</ul></aside>`)
+            .join("")}
         </div>
         <div class="page page-right">
           <figure class="recipe-photo taped"><img data-src="${esc(r.image || "")}" data-label="${esc(r.title)}" data-colour="${r.colour}" alt="${esc(r.title)}"></figure>
@@ -157,8 +165,16 @@
     input.value = "";
   });
 
+  function renderTips() {
+    const t = window.TIPS;
+    if (!t) return;
+    document.getElementById("tips-intro").textContent = t.intro;
+    document.getElementById("tips-list").innerHTML = t.items.map((i) => `<li>${esc(i)}</li>`).join("");
+  }
+
   renderFilters();
   renderCards();
+  renderTips();
   hydrateImages(document);
   window.addEventListener("hashchange", route);
   route();
