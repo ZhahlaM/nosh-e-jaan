@@ -57,42 +57,18 @@
   const metaOf = (r) =>
     [r.time, "serves " + r.serves.replace(/ people/, "").toLowerCase()].filter(Boolean).map(esc).join(" &middot; ");
   const bookNo = (r) => String(recipes.indexOf(r) + 1).padStart(2, "0");
-  const photo = (r, cls = "card-photo") =>
+  const photo = (r, cls) =>
     `<span class="${cls}"><img data-src="${esc(r.image)}" data-label="${esc(r.title)}" data-colour="${r.colour}" alt=""></span>`;
-
-  // ----- Layout previews (demo only: pick one, then the others can be deleted) -----
-  const LAYOUTS = [
-    { id: "menu", label: "Featured + menu" },
-    { id: "contents", label: "Contents page" },
-    { id: "mixed", label: "Mixed cards" },
-  ];
-  let layout = "menu";
-  try { layout = localStorage.getItem("nej-layout") || layout; } catch (e) {}
-  if (!LAYOUTS.some((l) => l.id === layout)) layout = "menu";
-
-  function renderLayoutSwitch() {
-    const el = document.getElementById("layout-switch");
-    el.innerHTML =
-      `<span class="ls-label">Layout preview</span>` +
-      LAYOUTS.map((l) => `<button type="button" data-layout="${l.id}" aria-pressed="${l.id === layout}">${esc(l.label)}</button>`).join("");
-    el.onclick = (e) => {
-      const b = e.target.closest("[data-layout]");
-      if (!b) return;
-      layout = b.dataset.layout;
-      try { localStorage.setItem("nej-layout", layout); } catch (err) {}
-      renderLayoutSwitch();
-      renderCards();
-    };
-  }
 
   const inFilter = (r) => activeFilter === "all" || r.section === activeFilter;
   const shownSections = () => sections.filter((sec) => activeFilter === "all" || sec.id === activeFilter);
 
-  // A: big photo cards for the pictured recipes, then a menu-style list of the rest.
-  function layoutMenu() {
+  // Big photo cards for the pictured recipes, then the whole book as a contents page.
+  function renderCards() {
+    const root = document.getElementById("card-grid");
     const featured = recipes.filter((r) => inFilter(r) && hasPhoto(r));
     const feat = featured.length
-      ? `<div class="featured count-${Math.min(featured.length, 4)}">${featured
+      ? `<div class="featured">${featured
           .map(
             (r, i) => `<a class="feature ${i === 0 ? "feature-lead" : ""}" href="#${r.slug}" style="--c:${r.colour}">
               ${photo(r, "feature-photo")}
@@ -104,40 +80,6 @@
             </a>`
           )
           .join("")}</div>`
-      : "";
-    const menu = shownSections()
-      .map((sec) => {
-        const list = recipes.filter((r) => r.section === sec.id && !hasPhoto(r));
-        if (!list.length) return "";
-        return `<div class="menu-course">
-          <h3 class="menu-heading">${esc(sec.title)}</h3>
-          <ul class="menu-list">${list
-            .map(
-              (r) => `<li><a href="#${r.slug}" style="--c:${r.colour}">
-                <span class="menu-line"><span class="menu-title">${esc(r.title)}</span><span class="menu-dots" aria-hidden="true"></span><span class="menu-time">${esc(r.time || r.oven || "")}</span></span>
-                <span class="menu-blurb">${esc(blurbOf(r))}</span>
-              </a></li>`
-            )
-            .join("")}</ul>
-        </div>`;
-      })
-      .join("");
-    return feat + (menu ? `<div class="menu"><p class="menu-kicker">Also in the book</p>${menu}</div>` : "");
-  }
-
-  // B: one lead recipe as a banner, then the whole book as a contents page.
-  function layoutContents() {
-    const lead = recipes.find((r) => inFilter(r) && hasPhoto(r));
-    const banner = lead
-      ? `<a class="banner" href="#${lead.slug}" style="--c:${lead.colour}">
-          ${photo(lead, "banner-photo")}
-          <span class="banner-body">
-            <span class="banner-kicker">Start here</span>
-            <span class="banner-title">${esc(lead.title)}</span>
-            <span class="banner-blurb">${esc(blurbOf(lead))}</span>
-            <span class="banner-cta">Read the recipe &rarr;</span>
-          </span>
-        </a>`
       : "";
     const toc = shownSections()
       .map((sec) => {
@@ -156,44 +98,7 @@
         </div>`;
       })
       .join("");
-    return banner + `<div class="toc">${toc}</div>`;
-  }
-
-  // C: one grid per section; pictured recipes take double-width cards, the rest are typographic cards.
-  function layoutMixed() {
-    return shownSections()
-      .map((sec) => {
-        const list = recipes.filter((r) => r.section === sec.id);
-        return `<div class="course">
-          <h3 class="course-title">${esc(sec.title)}</h3>
-          <div class="mixed-grid">${list
-            .map((r) =>
-              hasPhoto(r)
-                ? `<a class="card card-wide" href="#${r.slug}" style="--c:${r.colour}">
-                    ${photo(r)}
-                    <span class="card-body">
-                      <span class="card-meta">${metaOf(r)}</span>
-                      <span class="card-title">${esc(r.title)}</span>
-                      <span class="card-blurb">${esc(blurbOf(r))}</span>
-                    </span>
-                  </a>`
-                : `<a class="card card-type" href="#${r.slug}" style="--c:${r.colour}">
-                    <span class="type-initial" aria-hidden="true">${esc(r.title[0])}</span>
-                    <span class="card-title">${esc(r.title)}</span>
-                    <span class="card-blurb">${esc(blurbOf(r))}</span>
-                    <span class="card-meta">${metaOf(r)}</span>
-                  </a>`
-            )
-            .join("")}</div>
-        </div>`;
-      })
-      .join("");
-  }
-
-  function renderCards() {
-    const root = document.getElementById("card-grid");
-    root.dataset.layout = layout;
-    root.innerHTML = { menu: layoutMenu, contents: layoutContents, mixed: layoutMixed }[layout]();
+    root.innerHTML = feat + `<div class="toc"><h3 class="toc-kicker">The Recipe List</h3>${toc}</div>`;
     hydrateImages(root);
   }
 
@@ -280,7 +185,6 @@
   }
 
   renderFilters();
-  renderLayoutSwitch();
   renderCards();
   renderTips();
   hydrateImages(document);
