@@ -222,7 +222,6 @@ window.RECIPES = [
       "1tsp paprika",
       "½ tsp ground cumin",
       "¼ tsp salt, or more to taste",
-      "2 tbsp pine nuts",
     ],
     method: [
       "Preheat the oven to 220°C (200°C fan) / Gas Mark 7.",
