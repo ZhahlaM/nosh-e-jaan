@@ -246,6 +246,7 @@ window.RECIPES = [
     ingredients: [
       "1 butternut squash",
       "2 cans of chopped tomatoes",
+      "1tbsp tomato paste",
       "Oil (vegetable or olive)",
       "2 cloves of garlic",
       "Yoghurt",
