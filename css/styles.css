@@ -467,6 +467,7 @@ p { margin: 0; }
 .ingredients input:checked + label { text-decoration: line-through; text-decoration-color: var(--rose); color: var(--ink-soft); }
 
 .recipe-photo { margin-bottom: 8px; }
+.extra-photo { margin-top: 40px; }
 .recipe-photo img { aspect-ratio: 4 / 3; }
 .page-right .sub { margin-top: 28px; }
 .page-right > .sub:first-child { margin-top: 0; }

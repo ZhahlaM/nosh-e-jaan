@@ -20,3 +20,4 @@ Photos are shown cropped to 4:3 (recipes) or square (snapshots). JPGs around
 1600px on the long side keep the page fast.
 
 `beetroot-dip-flowers.jpg` is used beside "The book" section.
+`beetroot-brownies-closeup.jpg` is an extra photo on the Beetroot Brownies recipe page.

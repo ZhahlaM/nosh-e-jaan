@@ -132,6 +132,9 @@
           ${(r.notes || [])
             .map((n) => `<aside class="note"><h3>${esc(n.title)}</h3><ul>${n.items.map((i) => `<li>${esc(i)}</li>`).join("")}</ul></aside>`)
             .join("")}
+          ${(r.extraPhotos || [])
+            .map((p) => `<figure class="extra-photo taped taped-left"><img data-src="${esc(p.src)}" data-label="${esc(r.title)}" data-colour="${r.colour}" alt="${esc(p.alt)}"></figure>`)
+            .join("")}
         </div>
         <div class="page page-right">
           ${hasPhoto(r) ? `<figure class="recipe-photo taped"><img data-src="${esc(r.image)}" data-label="${esc(r.title)}" data-colour="${r.colour}" alt="${esc(r.title)}"></figure>` : ""}

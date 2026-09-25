@@ -2,6 +2,7 @@
 // A recipe with only slug/title/section/colour shows as "coming soon" in the index.
 // Fields: intro, serves, oven and time are optional; ingredients and method make it a full page.
 // `notes` are extra boxes shown under the ingredients: { title, items: [...] }.
+// `extraPhotos` are more photos shown on the recipe page under the ingredients: { src, alt }.
 // `image` is optional: if the file is missing, an illustrated placeholder is shown.
 window.RECIPES = [
   {
@@ -400,6 +401,9 @@ window.RECIPES = [
     slug: "beetroot-brownies",
     title: "Beetroot Brownies",
     image: "images/beetroot-brownies.jpg",
+    extraPhotos: [
+      { src: "images/beetroot-brownies-closeup.jpg", alt: "Close-up of the baked beetroot brownie in its crumpled baking paper, on a red gingham cloth" },
+    ],
     section: "desserts",
     colour: "#8C2446",
     intro:
