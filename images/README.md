@@ -18,3 +18,5 @@ for each remaining recipe, named after its `slug` in `js/recipes.js`.
 
 Photos are shown cropped to 4:3 (recipes) or square (snapshots). JPGs around
 1600px on the long side keep the page fast.
+
+`beetroot-dip-flowers.jpg` is used beside "The book" section.
