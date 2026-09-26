@@ -312,18 +312,6 @@ p { margin: 0; }
 .about-photo img { aspect-ratio: 4 / 5; }
 .about-text { display: flex; flex-direction: column; gap: 16px; max-width: 60ch; }
 .about-text h2 { font-size: var(--step-3); font-variation-settings: "SOFT" 100, "WONK" 1; }
-.thanks {
-  margin-top: 8px;
-  padding: 18px 20px;
-  border: 1.5px dashed var(--line);
-  border-radius: 14px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  font-size: 1rem;
-  color: var(--ink-soft);
-}
-.thanks h3 { font-size: var(--step-0); font-style: italic; color: var(--ink); }
 .note {
   margin-top: 24px;
   padding: 16px 20px;
