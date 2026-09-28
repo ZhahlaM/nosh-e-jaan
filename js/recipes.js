@@ -98,6 +98,7 @@ window.RECIPES = [
     colour: "#C8733A",
     intro: "These are a great addition to have with any dish, especially the one pot pie.",
     serves: "Four people",
+    oven: "200C / 180C Fan / Gas Mark 6",
     time: "30 min in the oven",
     ingredients: [
       "1kg sweet potatoes",
@@ -114,6 +115,7 @@ window.RECIPES = [
       "½ tbsp brown sugar",
     ],
     method: [
+      "Preheat the oven to 200C / 180C fan / Gas Mark 6.",
       "Line a tray with baking paper.",
       "Peel the sweet potatoes, then cut into wedges.",
       "Put into your baking tray, spreading the sweet potatoes out as much as possible (this will help them cook and get slightly crispy).",
