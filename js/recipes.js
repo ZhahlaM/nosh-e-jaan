@@ -342,7 +342,7 @@ window.RECIPES = [
     intro:
       "During the summer, I fell in love with having this dip for breakfast. It is fairly simple to make, just put some aubergines in the oven and let them roast for around 40 minutes. Then mix in a few ingredients together and it’s ready to serve. I love to eat it with fresh bread, tortillas or any kind of flatbread I have on hand. Dressed up with some sumac and pine nuts it looks gorgeous but is the kind of dish that is happy letting the roasted aubergines shine.",
     serves: "Four people",
-    oven: "180C / 200C / Gas Mark 4",
+    oven: "180C Fan / 200C / Gas Mark 6",
     time: "40 min roast",
     ingredients: [
       "3 aubergines",
@@ -357,7 +357,7 @@ window.RECIPES = [
       "Sumac (optional)",
     ],
     method: [
-      "Preheat oven to 180C / 200C / Gas Mark 4.",
+      "Preheat oven to 180C fan / 200C / Gas Mark 6.",
       "Slice the aubergines in half and score the inside of the aubergines with a knife.",
       "Drizzle olive oil and sprinkle salt over the aubergines.",
       "Roast insides facing down for 40 minutes in an oven tray. While this is happening finely chop your garlic and get your lemons ready to squeeze.",
@@ -376,7 +376,7 @@ window.RECIPES = [
     intro:
       "This beetroot hummus is great served with fresh bread. It also makes a great pasta sauce! Simply water down with pasta water and add to pasta.",
     serves: "Four to six people",
-    oven: "180C Fan / 200C / Gas Mark 4",
+    oven: "180C Fan / 200C / Gas Mark 6",
     time: "5–7 min toasting",
     ingredients: [
       "200g beetroot (cooked)",
@@ -391,7 +391,7 @@ window.RECIPES = [
       "Sumac (optional)",
     ],
     method: [
-      "Preheat the oven to 180C fan/ 200C / Gas Mark 4.",
+      "Preheat the oven to 180C fan/ 200C / Gas Mark 6.",
       "Place walnuts on a baking tray and toast for 5-7 minutes until their fragrance is released. Leave to cool.",
       "If you have a blender or food processor that can do this, blend the walnuts into fine crumbs.",
       "Then add the beetroot, tahini, olive oil, lemon juice, garlic, cumin and salt.",
