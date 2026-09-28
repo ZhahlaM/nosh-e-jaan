@@ -153,7 +153,7 @@ window.RECIPES = [
       "Preheat the oven to 150C / Gas Mark 2 / 170C fan.",
       "Fry chicken on high heat in oil in casserole pan/ frying pan/ pot for 5 minutes until golden brown and season with salt and pepper.",
       "Remove chicken to plate and spoon out most of fat from casserole.",
-      "Add garlic and onion and sweeten for 4-5 minutes but don’t let them colour.",
+      "Add garlic and onion and sweat for 4-5 minutes but don’t let them colour.",
       "Add vinegar and boil for 10 seconds until vinegar reduced to a syrup.",
       "Add white wine and bring to a boil for a few seconds, whisk in mustard, tomatoes, tarragon, and sage. Pour in water and return chicken to pan.",
       "Bring to boil, cover with lid and transfer to oven and cook for 35-40 minutes (liquid shouldn’t boil but cook at a very low simmer with just 1-2 bubbles breaking the surface).",
