@@ -185,7 +185,7 @@ window.RECIPES = [
       "2tsp Italian seasoning",
       "1tsp paprika",
       "2tsp onion powder",
-      "Garlic powder",
+      "1-2tsp garlic powder",
       "50ml of double cream (optional)",
       "½ tsp black pepper",
       "2tsp salt",
