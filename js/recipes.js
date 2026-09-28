@@ -178,7 +178,6 @@ window.RECIPES = [
       "2tbsp oil",
       "1 onion, diced",
       "2 big handfuls of spinach",
-      "Double cream",
       "Punnet of cherry tomatoes (optional)",
       "6 garlic cloves",
       "2tbsp tomato paste",
