@@ -528,6 +528,12 @@ window.RECIPES = [
       "Bake for 55 minutes to an hour, or until golden and a skewer inserted into the centre of the banana bread comes out mostly clean.",
     ],
   },
+  {
+    slug: "cinnamon-rolls",
+    title: "Cinnamon Rolls",
+    section: "desserts",
+    colour: "#B8863B",
+  },
 ];
 
 window.SECTIONS = [
