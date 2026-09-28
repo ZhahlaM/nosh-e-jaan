@@ -1,5 +1,5 @@
 // All recipes live here, in the same order as the book.
-// A recipe with only slug/title/section/colour shows as "coming soon" in the index.
+// A recipe with only slug/title/section/colour (and an optional `subtitle`) gets a "coming soon" page.
 // Fields: intro, serves, oven and time are optional; ingredients and method make it a full page.
 // `notes` are extra boxes shown under the ingredients: { title, items: [...] }.
 // `extraPhotos` are more photos shown on the recipe page under the ingredients: { src, alt }.
@@ -398,6 +398,13 @@ window.RECIPES = [
       "Blend and taste to see if the dip is seasoned to your liking. Add more of any of the ingredients until you get the right balance of flavours.",
       "To serve you can top the dip with a drizzle of olive oil, sumac and chopped walnuts but this is optional.",
     ],
+  },
+  {
+    slug: "mantu",
+    title: "Mantu",
+    subtitle: "Afghan dumplings",
+    section: "mains",
+    colour: "#8E5A3C",
   },
 
   {

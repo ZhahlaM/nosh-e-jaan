@@ -35,7 +35,6 @@
   }
 
   const isReady = (r) => Array.isArray(r.method) && r.method.length > 0;
-  const readyRecipes = recipes.filter(isReady);
   const filters = [{ id: "all", label: "Everything" }].concat(sections);
 
   function renderFilters() {
@@ -55,7 +54,18 @@
   const hasPhoto = (r) => Boolean(r.image);
   const blurbOf = (r) => (r.intro ? r.intro.split(/(?<=[.?!])\s/)[0] : `Serves ${r.serves.toLowerCase()}.`);
   const metaOf = (r) =>
-    [r.time, "serves " + r.serves.replace(/ people/, "").toLowerCase()].filter(Boolean).map(esc).join(" &middot; ");
+    (isReady(r)
+      ? [r.time, "serves " + r.serves.replace(/ people/, "").toLowerCase()]
+      : [r.subtitle, "Recipe coming soon"]
+    )
+      .filter(Boolean)
+      .map(esc)
+      .join(" &middot; ");
+  // The next finished recipe after r, in book order.
+  const nextReady = (r) => {
+    const i = recipes.indexOf(r);
+    return recipes.slice(i + 1).concat(recipes.slice(0, i)).find(isReady);
+  };
   const bookNo = (r) => String(recipes.indexOf(r) + 1).padStart(2, "0");
   const photo = (r, cls) =>
     `<span class="${cls}"><img data-src="${esc(r.image)}" data-label="${esc(r.title)}" data-colour="${r.colour}" alt=""></span>`;
@@ -88,7 +98,7 @@
           <h3 class="toc-heading">${esc(sec.title)}</h3>
           <ol class="toc-list">${list
             .map(
-              (r) => `<li><a href="#${r.slug}" style="--c:${r.colour}">
+              (r) => `<li><a href="#${r.slug}" class="${isReady(r) ? "" : "toc-soon"}" style="--c:${r.colour}">
                 <span class="toc-no">${bookNo(r)}</span>
                 ${hasPhoto(r) ? photo(r, "toc-thumb") : `<span class="toc-thumb toc-dot" aria-hidden="true">${esc(r.title[0])}</span>`}
                 <span class="toc-text"><span class="toc-title">${esc(r.title)}</span><span class="toc-meta">${metaOf(r)}</span></span>
@@ -102,15 +112,32 @@
     hydrateImages(root);
   }
 
+  function renderComingSoon(r) {
+    const next = nextReady(r);
+    view.style.setProperty("--c", r.colour);
+    view.innerHTML = `
+      <a class="back" href="#recipes">&larr; All recipes</a>
+      <div class="spread spread-soon">
+        <div class="page">
+          <p class="eyebrow">Coming soon</p>
+          <h1 class="recipe-title">${esc(r.title)}</h1>
+          ${r.subtitle ? `<p class="recipe-subtitle">${esc(r.subtitle)}</p>` : ""}
+          <p class="soon-text">This recipe is still being written up. Check back soon!</p>
+        </div>
+      </div>
+      <a class="next" href="#${next.slug}">Next recipe <span>${esc(next.title)}</span> &rarr;</a>`;
+  }
+
   function renderRecipe(r) {
-    const idx = readyRecipes.indexOf(r);
-    const next = readyRecipes[(idx + 1) % readyRecipes.length];
+    if (!isReady(r)) return renderComingSoon(r);
+    const next = nextReady(r);
     view.style.setProperty("--c", r.colour);
     view.innerHTML = `
       <a class="back" href="#recipes">&larr; All recipes</a>
       <div class="spread">
         <div class="page page-left">
           <h1 class="recipe-title">${esc(r.title)}</h1>
+          ${r.subtitle ? `<p class="recipe-subtitle">${esc(r.subtitle)}</p>` : ""}
           ${r.intro ? `<p class="recipe-intro">${esc(r.intro)}</p>` : ""}
           <dl class="facts">
             ${[
@@ -149,7 +176,7 @@
 
   function route() {
     const slug = location.hash.slice(1);
-    const r = readyRecipes.find((x) => x.slug === slug);
+    const r = recipes.find((x) => x.slug === slug);
     if (r) {
       renderRecipe(r);
       home.hidden = true;
