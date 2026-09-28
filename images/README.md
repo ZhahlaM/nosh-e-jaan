@@ -11,7 +11,8 @@ illustrated "photo coming soon" placeholder is shown.
 | `one-pot-chicken-pie.jpg` | One Pot Chicken Pie |
 | `baba-ganoush.jpg` | Baba Ganoush |
 | `beetroot-and-walnut-dip.jpg` | Beetroot and Walnut Dip |
-| `brownies-cut.jpg`, `cinnamon-buns.jpg`, `chicken-pie-tea-towel.jpg`, `dips-and-bread.jpg` | "From the kitchen" snapshots |
+| `cinnamon-buns.jpg` | Cinnamon Rolls, and a "From the kitchen" snapshot |
+| `brownies-cut.jpg`, `chicken-pie-tea-towel.jpg`, `dips-and-bread.jpg` | "From the kitchen" snapshots |
 
 Still needed: `chocolate-mug-cake.jpg`, `raspberry-bakewell-cake.jpg`, and one
 for each remaining recipe, named after its `slug` in `js/recipes.js`.

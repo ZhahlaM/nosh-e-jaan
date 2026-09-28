@@ -52,7 +52,8 @@
   }
 
   const hasPhoto = (r) => Boolean(r.image);
-  const blurbOf = (r) => (r.intro ? r.intro.split(/(?<=[.?!])\s/)[0] : `Serves ${r.serves.toLowerCase()}.`);
+  const blurbOf = (r) =>
+    r.intro ? r.intro.split(/(?<=[.?!])\s/)[0] : r.serves ? `Serves ${r.serves.toLowerCase()}.` : "";
   const metaOf = (r) =>
     (isReady(r)
       ? [r.time, "serves " + r.serves.replace(/ people/, "").toLowerCase()]
@@ -85,7 +86,7 @@
               <span class="feature-body">
                 <span class="card-meta">${metaOf(r)}</span>
                 <span class="feature-title">${esc(r.title)}</span>
-                <span class="card-blurb">${esc(blurbOf(r))}</span>
+                ${blurbOf(r) ? `<span class="card-blurb">${esc(blurbOf(r))}</span>` : ""}
               </span>
             </a>`
           )
@@ -123,9 +124,11 @@
           <h1 class="recipe-title">${esc(r.title)}</h1>
           ${r.subtitle ? `<p class="recipe-subtitle">${esc(r.subtitle)}</p>` : ""}
           <p class="soon-text">This recipe is still being written up. Check back soon!</p>
+          ${hasPhoto(r) ? `<figure class="recipe-photo soon-photo taped"><img data-src="${esc(r.image)}" data-label="${esc(r.title)}" data-colour="${r.colour}" alt="${esc(r.title)}"></figure>` : ""}
         </div>
       </div>
       <a class="next" href="#${next.slug}">Next recipe <span>${esc(next.title)}</span> &rarr;</a>`;
+    hydrateImages(view);
   }
 
   function renderRecipe(r) {

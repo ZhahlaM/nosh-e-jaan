@@ -228,6 +228,14 @@ p { margin: 0; }
 .feature-lead .feature-body { justify-content: center; padding: clamp(24px, 4vw, 48px); gap: 12px; }
 .feature-lead .feature-title { font-size: var(--step-3); color: var(--c); }
 .feature-lead .card-blurb { font-size: var(--step-0); }
+@media (min-width: 700px) {
+  .featured { grid-template-columns: repeat(2, 1fr); }
+  .feature:not(.feature-lead) .feature-photo img { aspect-ratio: 3 / 2; }
+  /* An odd card left over at the end spans the row, laid out like the lead card. */
+  .feature:not(.feature-lead):last-child:nth-child(even) { grid-column: 1 / -1; display: grid; grid-template-columns: 1.25fr 1fr; }
+  .feature:not(.feature-lead):last-child:nth-child(even) .feature-photo img { height: 100%; aspect-ratio: auto; min-height: 280px; }
+  .feature:not(.feature-lead):last-child:nth-child(even) .feature-body { justify-content: center; padding: clamp(24px, 4vw, 48px); }
+}
 
 /* ---------- Contents list ---------- */
 .toc { margin-top: clamp(48px, 7vw, 72px); columns: 2 320px; column-gap: clamp(32px, 5vw, 72px); }
@@ -410,6 +418,7 @@ p { margin: 0; }
 .spread-soon { grid-template-columns: 1fr; background-image: none; max-width: 640px; margin-inline: auto; text-align: center; }
 .spread-soon .page { align-items: center; gap: 4px; padding-block: clamp(48px, 8vw, 88px); }
 .soon-text { margin-top: 20px; color: var(--ink-soft); max-width: 36ch; }
+.soon-photo { margin-top: 36px; width: min(100%, 440px); }
 .recipe-intro::first-letter {
   font-family: var(--display);
   float: left;

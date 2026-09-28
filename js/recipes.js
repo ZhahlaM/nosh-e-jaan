@@ -531,6 +531,7 @@ window.RECIPES = [
   {
     slug: "cinnamon-rolls",
     title: "Cinnamon Rolls",
+    image: "images/cinnamon-buns.jpg",
     section: "desserts",
     colour: "#B8863B",
   },
